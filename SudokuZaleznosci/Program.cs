@@ -13,7 +13,7 @@ namespace SudokuZaleznosci
         {
             for (int b = 0; b < a; b++)
             {
-                Matrix CellControls = new Matrix();
+                Matrix CellControls = new Matrix(9,9);
                 GameBoard.Clear();
                 GameBoard.Solver.SolveThePuzzle(UseRandomGenerator: true);
                 for (int i = 0; i < 9; i++)
@@ -89,6 +89,39 @@ namespace SudokuZaleznosci
             MozliweDwojki.Add(new int[2, 2] { { 5, 6 }, { 6, 7 }, });
             MozliweDwojki.Add(new int[2, 2] { { 5, 7 }, { 6, 8 }, });
 
+
+            MozliweDwojki.Add(new int[2, 2] { { 1, 2 }, { 0, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 2, 2 }, { 1, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 2 }, { 2, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 4, 2 }, { 3, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 5, 2 }, { 4, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 2 }, { 5, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 7, 2 }, { 6, 3 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 8, 2 }, { 7, 3 }, });
+
+            MozliweDwojki.Add(new int[2, 2] { { 1, 5 }, { 0, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 2, 5 }, { 1, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 5 }, { 2, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 4, 5 }, { 3, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 5, 5 }, { 4, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 5 }, { 5, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 7, 5 }, { 6, 6 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 8, 5 }, { 7, 6 }, });
+
+            MozliweDwojki.Add(new int[2, 2] { { 3, 0 }, { 2, 1 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 1 }, { 2, 2 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 3 }, { 2, 4 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 4 }, { 2, 5 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 6 }, { 2, 7 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 3, 7 }, { 2, 8 }, });
+
+            MozliweDwojki.Add(new int[2, 2] { { 6, 0 }, { 5, 1 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 1 }, { 5, 2 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 3 }, { 5, 4 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 4 }, { 5, 5 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 6 }, { 5, 7 }, });
+            MozliweDwojki.Add(new int[2, 2] { { 6, 7 }, { 5, 8 }, });
+
             for (int a = 0; a < SudokuList.Count; a++)
             {
                 for (int i = 0; i < MozliweTrojki.Count; i++)
@@ -124,7 +157,7 @@ namespace SudokuZaleznosci
             }
             foreach (var item in krotka.Item2)
             {
-                listaZaleznosci[item[0, 0]-1].Add(item[0, 1] * 100);
+                listaZaleznosci[item[0, 0]-1].Add(item[0, 1] + 16);
             }
             for (int i = 0; i < listaZaleznosci.Count; i++)
             {
@@ -136,6 +169,30 @@ namespace SudokuZaleznosci
             }
             return listaZaleznosci;
         }
+
+        public static Matrix MacierzZaleznosci(List<List<int>> wynik)
+        {
+            Matrix macierzWynikowa = new Matrix(73,73);
+            foreach (var item in wynik)
+            {
+                for (int i = 1; i < item.Count; i++)
+                {
+                    for (int j = i+1; j < item.Count; j++)
+                    {
+                        macierzWynikowa[item[i], item[j]]++; //dodanie zaleznosci miedzy a i b
+                        macierzWynikowa[item[j], item[i]]++;
+                      //  macierzWynikowa[item[i], item[i]]++; to jest zle = w ilu sudoku pojawila sie ta trojka lub dwojka
+                    }
+                    macierzWynikowa[item[i], item[i]]++;
+                }
+
+            }
+            return macierzWynikowa;
+        }
+
+
+
+
         public static void zapisz(List<Matrix> SudokuList)
         {
             string FILE_NAME = "Wynik.txt";
@@ -154,13 +211,30 @@ namespace SudokuZaleznosci
             }
             sw.Close();
         }
+        public static void zapisz2(Matrix MacierzKoncowa)
+        {
+            string FILE_NAME = "Wynik2.txt";
+            string text = "";
+            for (int i = 0; i < 73; i++)
+            {
+                text += i + "\t|";
+            }
+            StreamWriter sw = new StreamWriter(FILE_NAME);
+            sw.WriteLine(text);
+                for (int j = 0; j < 73; j++)
+                {
+                    sw.WriteLine(MacierzKoncowa.OdczytajLinie2(j));
+                    sw.WriteLine("________________________________________________________");
+                }
+            sw.Close();
+        }
 
         static void Main(string[] args)
         {
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             Tuple<List<int[,]>, List<int[,]>> krotka; //= new Tuple<List<int[,]>, List<int[,]>>(lista, lista2);         
-            int iloscGeneracji = 100;
+            int iloscGeneracji = 10;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             krotka = wykryjTrojkiIDwojki(SudokuList);
             zapisz(SudokuList);
@@ -186,6 +260,10 @@ namespace SudokuZaleznosci
                 }
                 Console.WriteLine(text);
             }
+           Matrix macierzKoncowa = MacierzZaleznosci(wynik);
+            zapisz2(macierzKoncowa);
+           // Console.WriteLine( macierzKoncowa.ToString2());
+
             Console.ReadKey();
         }
     }
