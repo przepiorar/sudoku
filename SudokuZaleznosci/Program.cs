@@ -29,6 +29,8 @@ namespace SudokuZaleznosci
         }
 
         public static Tuple< List<int[,]>, List<int[,]>> wykryjTrojkiIDwojki(List<Matrix> SudokuList)
+        //zwraca krotkę złożoną z 2 list 2-wymiarowych (numer sudoku w którym występuje i nr trójki/dwójki)
+        //1 lista jest dla trójek, a 2 lista jest dla dwójek
         {
             List<int[,]> macierzeZTrojka = new List<int[,]>();
 
@@ -129,35 +131,35 @@ namespace SudokuZaleznosci
                     if (SudokuList[a][MozliweTrojki[i][0,0], MozliweTrojki[i][0,1]]== SudokuList[a][MozliweTrojki[i][1, 0], MozliweTrojki[i][1, 1]] &&
                         SudokuList[a][MozliweTrojki[i][0, 0], MozliweTrojki[i][0, 1]] == SudokuList[a][MozliweTrojki[i][2, 0], MozliweTrojki[i][2, 1]])
                     {
-                        macierzeZTrojka.Add(new int[1, 2] { { a+1, i+1 } });                       
+                        macierzeZTrojka.Add(new int[1, 2] { { a+1, i } });                       
                     }
                 }
                 for (int i = 0; i < MozliweDwojki.Count; i++)
                 {
                     if (SudokuList[a][MozliweDwojki[i][0, 0], MozliweDwojki[i][0, 1]] == SudokuList[a][MozliweDwojki[i][1, 0], MozliweDwojki[i][1, 1]])
                     {
-                        macierzeZDwojka.Add(new int[1, 2] { { a + 1, i + 1 } });
+                        macierzeZDwojka.Add(new int[1, 2] { { a + 1, i  } });
                     }
                 }
             }
             return new Tuple<List<int[,]>, List<int[,]>>(macierzeZTrojka,macierzeZDwojka) ;
         }
 
-        public static List<List<int>> wykryjZaleznosci(Tuple<List<int[,]>, List<int[,]>> krotka, int ilosc)
+        public static List<List<int>> wykryjZaleznosci(Tuple<List<int[,]>,List<int[,]>> krotka, int ilosc)
         {
             List<List<int>> listaZaleznosci = new List<List<int>>(ilosc);
 
             for (int i = 1; i < ilosc+1; i++)
             {
-                listaZaleznosci.Add(new List<int> {i}); //dodanie nr sudoku
+                listaZaleznosci.Add(new List<int> {i}); //dodanie nr sudoku do listy zalezności
             }
             foreach (var item in krotka.Item1)
             {
-                listaZaleznosci[item[0, 0]-1].Add(item[0, 1]);
+                listaZaleznosci[item[0, 0]-1].Add(item[0, 1]); // dodanie nr trójki do odpowiedniej podlisty(z numerem sudoku-1)
             }
             foreach (var item in krotka.Item2)
             {
-                listaZaleznosci[item[0, 0]-1].Add(item[0, 1] + 16);
+                listaZaleznosci[item[0, 0]-1].Add(item[0, 1] + 16); //dodanie nr dwójki do odpowiedniej podlisty(z numerem sudoku-1)
             }
             for (int i = 0; i < listaZaleznosci.Count; i++)
             {
@@ -172,10 +174,10 @@ namespace SudokuZaleznosci
 
         public static Matrix MacierzZaleznosci(List<List<int>> wynik)
         {
-            Matrix macierzWynikowa = new Matrix(73,73);
+            Matrix macierzWynikowa = new Matrix(72,72);
             foreach (var item in wynik)
             {
-                for (int i = 1; i < item.Count; i++)
+                for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
                 {
                     for (int j = i+1; j < item.Count; j++)
                     {
@@ -184,19 +186,23 @@ namespace SudokuZaleznosci
                     }
                     macierzWynikowa[item[i], item[i]]++; //dodanie informacji ze w sudoku wystapila dana trojka lub dwojka
                 }
-
             }
             return macierzWynikowa;
         }
 
         public static Matrix obliczProcent(Matrix macierz)
         {
-            Matrix macierzWynikowa = new Matrix(73, 73);
-            for (int i = 1; i < 73; i++)
+            Matrix macierzWynikowa = new Matrix(72, 72);
+            for (int i = 0; i < 72; i++)
             {
-                for (int j  = 0; j < 73; j++)
+                for (int j  = 0; j < 72; j++)
                 {
-                    macierzWynikowa[i, j] = Math.Round(100*macierz[i, j] / macierz[i, i],2);
+                    if (macierz[i, i] != 0)
+                    {
+                        macierzWynikowa[i, j] = Math.Round(100 * macierz[i, j] / macierz[i, i], 2);
+                    }
+                    else
+                        macierzWynikowa[i, j] = 0;
                 }
             }
             return macierzWynikowa;
@@ -205,9 +211,9 @@ namespace SudokuZaleznosci
         public static double znajdzNajwiekszyProcent (Matrix macierz)
         {
             double max = 0;
-            for (int i = 0; i < 73; i++)
+            for (int i = 0; i < 72; i++)
             {
-                for (int j = 0; j < 73; j++)
+                for (int j = 0; j < 72; j++)
                 {
                     if (max < macierz[i, j] && macierz[i, j] != 100)
                         max = macierz[i, j];
@@ -215,53 +221,17 @@ namespace SudokuZaleznosci
             }
             return max;
         }
-
-
-        public static void zapisz(List<Matrix> SudokuList)
-        {
-            string FILE_NAME = "Wynik.txt";
-            StreamWriter sw = new StreamWriter(FILE_NAME);
-            for (int i = 0; i < SudokuList.Count; i++)
-            {
-                sw.WriteLine("plansza " + (i + 1));
-                for (int j = 0; j < 9; j++)
-                {
-                    sw.WriteLine(SudokuList[i].OdczytajLinie(j));
-                    if (j % 3 == 2 && j != 9 && j != 0)
-                    {
-                        sw.WriteLine("___________________");
-                    }
-                }
-            }
-            sw.Close();
-        }
-        public static void zapisz2(Matrix MacierzKoncowa, string name)
-        {
-            string FILE_NAME = name;
-            string text = "";
-            for (int i = 0; i < 73; i++)
-            {
-                text += i + "\t|";
-            }
-            StreamWriter sw = new StreamWriter(FILE_NAME);
-            sw.WriteLine(text);
-                for (int j = 0; j < 73; j++)
-                {
-                    sw.WriteLine(MacierzKoncowa.OdczytajLinie2(j));
-                    sw.WriteLine("________________________________________________________");
-                }
-            sw.Close();
-        }
+        
 
         static void Main(string[] args)
         {
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
-            Tuple<List<int[,]>, List<int[,]>> krotka; //= new Tuple<List<int[,]>, List<int[,]>>(lista, lista2);         
-            int iloscGeneracji = 1000;
+            Tuple<List<int[,]>, List<int[,]>> krotka;       
+            int iloscGeneracji = 20;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             krotka = wykryjTrojkiIDwojki(SudokuList);
-            zapisz(SudokuList);
+            Metody.zapisz(SudokuList);
 
             List<List<int>> wynik = new List<List<int>>();
             wynik = wykryjZaleznosci(krotka, iloscGeneracji);
@@ -270,16 +240,16 @@ namespace SudokuZaleznosci
                 string text = "nr sudoku: " + item[0] + " wykryto: ";
                 for (int i = 1; i < item.Count; i++)
                 {
-                    text += item[i] + " ";
+                    text += item[i]+1 + " ";
                 }
                 Console.WriteLine(text);
             }
             Matrix macierzKoncowa = MacierzZaleznosci(wynik);
             string nazwa = "Wynik2.txt";
-            zapisz2(macierzKoncowa, nazwa);
+            Metody.zapisz2(macierzKoncowa, nazwa);
             Matrix macierzKoncowa2 = obliczProcent(macierzKoncowa);
             nazwa = "Wynik3.txt";
-            zapisz2(macierzKoncowa2, nazwa);
+            Metody.zapisz2(macierzKoncowa2, nazwa);
 
             double max = znajdzNajwiekszyProcent(macierzKoncowa2);
             Console.WriteLine(max);
