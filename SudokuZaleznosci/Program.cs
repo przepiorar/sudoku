@@ -23,7 +23,6 @@ namespace SudokuZaleznosci
                         CellControls[i, j] = GameBoard.GetCell(9 * i + j).Value;
                     }
                 }
-              //  Console.WriteLine("plansza " +(b+1) + "\n"+  CellControls.ToString());
                 listMatrix.Add(CellControls);
             }
         }
@@ -34,109 +33,21 @@ namespace SudokuZaleznosci
         {
             List<int[,]> macierzeZTrojka = new List<int[,]>();
 
-            List<int[,]> MozliweTrojki = new List<int[,]>();
-            MozliweTrojki.Add(new int[3, 2] { { 1, 2 }, { 2, 3 }, { 3, 4 } });
-            MozliweTrojki.Add(new int[3, 2] { { 2, 1 }, { 3, 2 }, { 4, 3 } });
-            MozliweTrojki.Add(new int[3, 2] { { 3, 1 }, { 2, 2 }, { 1, 3 } });
-            MozliweTrojki.Add(new int[3, 2] { { 4, 2 }, { 3, 3 }, { 2, 4 } });
-
-            MozliweTrojki.Add(new int[3, 2] { { 4, 2 }, { 5, 3 }, { 6, 4 } });
-            MozliweTrojki.Add(new int[3, 2] { { 5, 1 }, { 6, 2 }, { 7, 3 } });
-            MozliweTrojki.Add(new int[3, 2] { { 6, 1 }, { 5, 2 }, { 4, 3 } });
-            MozliweTrojki.Add(new int[3, 2] { { 7, 2 }, { 6, 3 }, { 5, 4 } });
-
-            MozliweTrojki.Add(new int[3, 2] { { 1, 5 }, { 2, 6 }, { 3, 7 } });
-            MozliweTrojki.Add(new int[3, 2] { { 2, 4 }, { 3, 5 }, { 4, 6 } });
-            MozliweTrojki.Add(new int[3, 2] { { 3, 4 }, { 2, 5 }, { 1, 6 } });
-            MozliweTrojki.Add(new int[3, 2] { { 4, 5 }, { 3, 6 }, { 2, 7 } });
-
-            MozliweTrojki.Add(new int[3, 2] { { 4, 5 }, { 5, 6 }, { 6, 7 } });
-            MozliweTrojki.Add(new int[3, 2] { { 5, 4 }, { 6, 5 }, { 7, 6 } });
-            MozliweTrojki.Add(new int[3, 2] { { 6, 4 }, { 5, 5 }, { 4, 6 } });
-            MozliweTrojki.Add(new int[3, 2] { { 7, 5 }, { 6, 6 }, { 5, 7 } });
-
-
             List<int[,]> macierzeZDwojka = new List<int[,]>();
-
-            List<int[,]> MozliweDwojki = new List<int[,]>();
-            MozliweDwojki.Add(new int[2, 2] { { 0, 2 }, { 1, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 1, 2 }, { 2, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 2 }, { 3, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 2 }, { 4, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 4, 2 }, { 5, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 2 }, { 6, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 2 }, { 7, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 7, 2 }, { 8, 3 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 0, 5 }, { 1, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 1, 5 }, { 2, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 5 }, { 3, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 5 }, { 4, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 4, 5 }, { 5, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 5 }, { 6, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 5 }, { 7, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 7, 5 }, { 8, 6 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 2, 0 }, { 3, 1 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 1 }, { 3, 2 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 3 }, { 3, 4 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 4 }, { 3, 5 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 6 }, { 3, 7 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 7 }, { 3, 8 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 5, 0 }, { 6, 1 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 1 }, { 6, 2 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 3 }, { 6, 4 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 4 }, { 6, 5 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 6 }, { 6, 7 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 7 }, { 6, 8 }, });
-
-
-            MozliweDwojki.Add(new int[2, 2] { { 1, 2 }, { 0, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 2 }, { 1, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 2 }, { 2, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 4, 2 }, { 3, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 2 }, { 4, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 2 }, { 5, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 7, 2 }, { 6, 3 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 8, 2 }, { 7, 3 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 1, 5 }, { 0, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 2, 5 }, { 1, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 5 }, { 2, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 4, 5 }, { 3, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 5, 5 }, { 4, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 5 }, { 5, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 7, 5 }, { 6, 6 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 8, 5 }, { 7, 6 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 3, 0 }, { 2, 1 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 1 }, { 2, 2 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 3 }, { 2, 4 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 4 }, { 2, 5 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 6 }, { 2, 7 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 3, 7 }, { 2, 8 }, });
-
-            MozliweDwojki.Add(new int[2, 2] { { 6, 0 }, { 5, 1 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 1 }, { 5, 2 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 3 }, { 5, 4 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 4 }, { 5, 5 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 6 }, { 5, 7 }, });
-            MozliweDwojki.Add(new int[2, 2] { { 6, 7 }, { 5, 8 }, });
 
             for (int a = 0; a < SudokuList.Count; a++)
             {
-                for (int i = 0; i < MozliweTrojki.Count; i++)
+                for (int i = 0; i < Stale.ListaTrojek.Count; i++)
                 {
-                    if (SudokuList[a][MozliweTrojki[i][0,0], MozliweTrojki[i][0,1]]== SudokuList[a][MozliweTrojki[i][1, 0], MozliweTrojki[i][1, 1]] &&
-                        SudokuList[a][MozliweTrojki[i][0, 0], MozliweTrojki[i][0, 1]] == SudokuList[a][MozliweTrojki[i][2, 0], MozliweTrojki[i][2, 1]])
+                    if (SudokuList[a][Stale.ListaTrojek[i][0,0], Stale.ListaTrojek[i][0,1]]== SudokuList[a][Stale.ListaTrojek[i][1, 0], Stale.ListaTrojek[i][1, 1]] &&
+                        SudokuList[a][Stale.ListaTrojek[i][0, 0], Stale.ListaTrojek[i][0, 1]] == SudokuList[a][Stale.ListaTrojek[i][2, 0], Stale.ListaTrojek[i][2, 1]])
                     {
                         macierzeZTrojka.Add(new int[1, 2] { { a+1, i } });                       
                     }
                 }
-                for (int i = 0; i < MozliweDwojki.Count; i++)
+                for (int i = 0; i < Stale.ListaDwojek.Count; i++)
                 {
-                    if (SudokuList[a][MozliweDwojki[i][0, 0], MozliweDwojki[i][0, 1]] == SudokuList[a][MozliweDwojki[i][1, 0], MozliweDwojki[i][1, 1]])
+                    if (SudokuList[a][Stale.ListaDwojek[i][0, 0], Stale.ListaDwojek[i][0, 1]] == SudokuList[a][Stale.ListaDwojek[i][1, 0], Stale.ListaDwojek[i][1, 1]])
                     {
                         macierzeZDwojka.Add(new int[1, 2] { { a + 1, i  } });
                     }
@@ -208,18 +119,50 @@ namespace SudokuZaleznosci
             return macierzWynikowa;
         }
 
-        public static double znajdzNajwiekszyProcent (Matrix macierz)
+        public static List<int[,]> znajdzZaleznosci (Matrix macierz)
         {
-            double max = 0;
+            List<int[,]> potencjalne = new List<int[,]>();
+            int prog = 33;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
                 {
-                    if (max < macierz[i, j] && macierz[i, j] != 100)
-                        max = macierz[i, j];
+                    if (prog < macierz[i, j] && i != j)
+                    {
+                        potencjalne.Add(new int[1, 2] { { i, j } });
+                    }
                 }
             }
-            return max;
+            int licznik = potencjalne.Count;
+            for (int i = 0; i < licznik; i++)
+            {
+                int a = potencjalne[i][0, 0]; 
+                int b = potencjalne[i][0, 1];
+                int tmp = 0;
+                if (a < 16 && b < 16 || a>=16 && b>=16)
+                { }
+                else
+                {
+                    if (a > b) //znaczy to że a jest dwójką a b trójką
+                    { //zamieniamy a z b tak żeby a było trójką b dwójką
+                        tmp = a;
+                        a = b;
+                        b = tmp;
+                    }
+                    b = b - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
+                    if (Stale.ListaTrojek[a][0,0] ==Stale.ListaDwojek[b][0,0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                        Stale.ListaTrojek[a][1,0] == Stale.ListaDwojek[b][1,0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][1, 1] || 
+                        Stale.ListaTrojek[a][1,0] == Stale.ListaDwojek[b][0,0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                        Stale.ListaTrojek[a][2,0] == Stale.ListaDwojek[b][1,0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[b][1, 1])
+                    {
+                        potencjalne.RemoveAt(i);
+                        licznik--;
+                        i--;
+                    }
+
+                }
+            }
+            return potencjalne;
         }
         
 
@@ -228,31 +171,35 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             Tuple<List<int[,]>, List<int[,]>> krotka;       
-            int iloscGeneracji = 20;
+            int iloscGeneracji = 1000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             krotka = wykryjTrojkiIDwojki(SudokuList);
             Metody.zapisz(SudokuList);
 
             List<List<int>> wynik = new List<List<int>>();
             wynik = wykryjZaleznosci(krotka, iloscGeneracji);
-            foreach (var item in wynik)
-            {
-                string text = "nr sudoku: " + item[0] + " wykryto: ";
-                for (int i = 1; i < item.Count; i++)
-                {
-                    text += item[i]+1 + " ";
-                }
-                Console.WriteLine(text);
-            }
+            //foreach (var item in wynik)
+            //{
+            //    string text = "nr sudoku: " + item[0] + " wykryto: ";
+            //    for (int i = 1; i < item.Count; i++)
+            //    {
+            //        text += item[i]+1 + " ";
+            //    }
+            //    Console.WriteLine(text);
+            //}
             Matrix macierzKoncowa = MacierzZaleznosci(wynik);
             string nazwa = "Wynik2.txt";
             Metody.zapisz2(macierzKoncowa, nazwa);
-            Matrix macierzKoncowa2 = obliczProcent(macierzKoncowa);
+            Matrix macierzKoncowaProcentowa = obliczProcent(macierzKoncowa);
             nazwa = "Wynik3.txt";
-            Metody.zapisz2(macierzKoncowa2, nazwa);
+            Metody.zapisz2(macierzKoncowaProcentowa, nazwa);
 
-            double max = znajdzNajwiekszyProcent(macierzKoncowa2);
-            Console.WriteLine(max);
+            List<int[,]> wykryteZaleznosci = znajdzZaleznosci(macierzKoncowaProcentowa);
+            for (int i = 0; i < wykryteZaleznosci.Count; i++)
+            {
+                Console.WriteLine((wykryteZaleznosci[i][0,0]+1) + " " + (wykryteZaleznosci[i][0, 1]+1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +  "\n");
+            }
+            Console.WriteLine(wykryteZaleznosci.Count);
             Console.ReadKey();
         }
     }
