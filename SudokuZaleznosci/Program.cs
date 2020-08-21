@@ -116,7 +116,7 @@ namespace SudokuZaleznosci
             {
                 for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
                 {
-                    for (int j = i+1; j < item.Count; j++)
+                    for (int j = i+1; j < item.Count; j++) //zwiększa o 1 zależność między a, a kazdym innym w danym sudoku b1,b2,b3...
                     {
                         macierzWynikowa[item[i], item[j]]++; //dodanie zaleznosci miedzy a i b
                         macierzWynikowa[item[j], item[i]]++;
@@ -164,50 +164,237 @@ namespace SudokuZaleznosci
             {
                 int a = potencjalne[i][0, 0]; 
                 int b = potencjalne[i][0, 1];
-                int tmp = 0;
                 if (a < 16 && b < 16 || a>=16 && b>=16)
                 { }
                 else
                 {
-                    if (a > b) //znaczy to że a jest dwójką a b trójką
-                    { //zamieniamy a z b tak żeby a było trójką b dwójką
-                        tmp = a;
-                        a = b;
-                        b = tmp;
-                    }
-                    b = b - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
-                    if (Stale.ListaTrojek[a][0,0] ==Stale.ListaDwojek[b][0,0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[b][0, 1] &&
-                        Stale.ListaTrojek[a][1,0] == Stale.ListaDwojek[b][1,0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][1, 1] || 
-                        Stale.ListaTrojek[a][1,0] == Stale.ListaDwojek[b][0,0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][0, 1] &&
-                        Stale.ListaTrojek[a][2,0] == Stale.ListaDwojek[b][1,0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[b][1, 1])
+                    if (a < b)//znaczy to że a jest trójką a b dwójką
                     {
-                        potencjalne.RemoveAt(i);
-                        licznik--;
-                        i--;
+                        b = b - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
+                        if (Stale.ListaTrojek[a][0, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                            Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][1, 1] ||
+                            Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                            Stale.ListaTrojek[a][2, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[b][1, 1])
+                        {
+                            potencjalne.RemoveAt(i);
+                            licznik--;
+                            i--;
+                        }
                     }
-
+                    else
+                    {
+                        a = a - 16;
+                        if (Stale.ListaTrojek[b][0, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][0, 1] == Stale.ListaDwojek[a][0, 1] &&
+                            Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][1, 1] ||
+                            Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][0, 1] &&
+                            Stale.ListaTrojek[b][2, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][2, 1] == Stale.ListaDwojek[a][1, 1])
+                        {
+                            potencjalne.RemoveAt(i);
+                            licznik--;
+                            i--;
+                        }
+                    }
                 }
             }
             return potencjalne;
         }
 
 
-        public static Matrix KostkaZaleznosci(List<List<int>> wynik,Matrix macierz)
+        public static Cube KostkaZaleznosci(List<List<int>> wynik)
         {
-            Matrix macierzWynikowa = new Matrix(72, 72);
+            Cube kostkaWynikowa = new Cube(72, 72,72);
             foreach (var item in wynik)
             {
                 for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
                 {
                     for (int j = i + 1; j < item.Count; j++)
                     {
-                        macierzWynikowa[item[i], item[j]]++; //dodanie zaleznosci miedzy a i b
-                        macierzWynikowa[item[j], item[i]]++;
+                        for (int k = i + 2; k < item.Count; k++)
+                        {
+                            kostkaWynikowa[item[i], item[j], item[k]]++;
+                            kostkaWynikowa[item[i], item[k], item[j]]++;
+                            kostkaWynikowa[item[j], item[i], item[k]]++;
+                            kostkaWynikowa[item[j], item[k], item[i]]++;
+                            kostkaWynikowa[item[k], item[j], item[i]]++;
+                            kostkaWynikowa[item[k], item[i], item[j]]++;
+                        }
                     }
-                    macierzWynikowa[item[i], item[i]]++; //dodanie informacji ze w sudoku wystapila dana trojka lub dwojka
+                    kostkaWynikowa[item[i], item[i], item[i]]++; //dodanie informacji ze w sudoku wystapila dana trojka lub dwojka
                 }
             }
-            return macierzWynikowa;
+            return kostkaWynikowa;
+        }
+
+        public static Cube obliczProcentKostka(Cube kostka)
+        {
+            Cube kostkaWynikowa = new Cube(72, 72,72);
+            for (int i = 0; i < 72; i++)
+            {
+                for (int j = 0; j < 72; j++)
+                {
+                    for (int k = 0; k < 72; k++)
+                    {
+                        if (kostka[i, i, i] != 0)
+                        {
+                            kostkaWynikowa[i, j,k] = Math.Round(100 * kostka[i, j, k] / kostka[i, i, i], 2);
+                        }
+                        else
+                            kostkaWynikowa[i, j,k] = 0;
+                    }
+                }
+            }
+            return kostkaWynikowa;
+        }
+
+        public static List<int[,]> znajdzZaleznosciKostka(Cube macierz)
+        {
+            List<int[,]> potencjalne = new List<int[,]>();
+            int prog = 25;
+            for (int i = 0; i < 72; i++)
+            {
+                for (int j = 0; j < 72; j++)
+                {
+                    for (int k = 0; k < 72; k++)
+                    {
+
+                        if (prog < macierz[i, j,k] && i != j && i!=k && j!=k)
+                        {
+                            potencjalne.Add(new int[1, 3] { { i, j,k } });
+                        }
+                    }
+                }
+            }
+            int licznik = potencjalne.Count;
+            for (int i = 0; i < licznik; i++)
+            {
+                int a = potencjalne[i][0, 0];
+                int b = potencjalne[i][0, 1];
+                int c = potencjalne[i][0, 2];
+                if (a < 16 && b < 16 && c < 16 || a >= 16 && b >= 16 && c > 16)
+                { }
+                else
+                {
+                    if (a<16)
+                    {
+                        if (b<16)
+                        {
+                            c = c - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
+                            if (Stale.ListaTrojek[a][0, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[c][1, 1] ||
+                                Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                Stale.ListaTrojek[a][2, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[c][1, 1] ||
+                                Stale.ListaTrojek[b][0, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[b][0, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[c][1, 1] ||
+                                Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                Stale.ListaTrojek[b][2, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[b][2, 1] == Stale.ListaDwojek[c][1, 1])
+                            {
+                                potencjalne.RemoveAt(i);
+                                licznik--;
+                                i--;
+                            }
+                        }
+                        else
+                        {
+                            if (c<16)
+                            {
+                                b = b - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
+                                if (Stale.ListaTrojek[a][0, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[a][2, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                    Stale.ListaTrojek[c][0, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[c][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                    Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[c][2, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[c][2, 1] == Stale.ListaDwojek[b][1, 1])
+                                {
+                                    potencjalne.RemoveAt(i);
+                                    licznik--;
+                                    i--;
+                                }
+                            }
+                            else
+                            {
+                                b = b - 16; //w macierzy dwójki są numerowane w przedziale 15-71, a w programie 0-55
+                                c = c - 16;
+                                if (Stale.ListaTrojek[a][0, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                    Stale.ListaTrojek[a][2, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                    Stale.ListaTrojek[a][0, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[a][0, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[c][1, 1] ||
+                                    Stale.ListaTrojek[a][1, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[a][1, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                    Stale.ListaTrojek[a][2, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[a][2, 1] == Stale.ListaDwojek[c][1, 1])
+                                {
+                                    potencjalne.RemoveAt(i);
+                                    licznik--;
+                                    i--;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (b<16)
+                        {
+                            if (c<16)
+                            {
+                                a = a - 16;
+                                if (Stale.ListaTrojek[b][0, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][0, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[b][2, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][2, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                    Stale.ListaTrojek[c][0, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[c][0, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                    Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[c][2, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[c][2, 1] == Stale.ListaDwojek[a][1, 1])
+                                {
+                                    potencjalne.RemoveAt(i);
+                                    licznik--;
+                                    i--;
+                                }
+                            }
+                            else
+                            {
+                                a = a - 16;
+                                c = c - 16;
+                                if (Stale.ListaTrojek[b][0, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][0, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                    Stale.ListaTrojek[b][2, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[b][2, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                    Stale.ListaTrojek[b][0, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[b][0, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[c][1, 1] ||
+                                    Stale.ListaTrojek[b][1, 0] == Stale.ListaDwojek[c][0, 0] && Stale.ListaTrojek[b][1, 1] == Stale.ListaDwojek[c][0, 1] &&
+                                    Stale.ListaTrojek[b][2, 0] == Stale.ListaDwojek[c][1, 0] && Stale.ListaTrojek[b][2, 1] == Stale.ListaDwojek[c][1, 1])
+                                {
+                                    potencjalne.RemoveAt(i);
+                                    licznik--;
+                                    i--;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            a = a - 16;
+                            b = b - 16;
+                            if (Stale.ListaTrojek[c][0, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[c][0, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[a][0, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[a][0, 1] &&
+                                Stale.ListaTrojek[c][2, 0] == Stale.ListaDwojek[a][1, 0] && Stale.ListaTrojek[c][2, 1] == Stale.ListaDwojek[a][1, 1] ||
+                                Stale.ListaTrojek[c][0, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[c][0, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[b][1, 1] ||
+                                Stale.ListaTrojek[c][1, 0] == Stale.ListaDwojek[b][0, 0] && Stale.ListaTrojek[c][1, 1] == Stale.ListaDwojek[b][0, 1] &&
+                                Stale.ListaTrojek[c][2, 0] == Stale.ListaDwojek[b][1, 0] && Stale.ListaTrojek[c][2, 1] == Stale.ListaDwojek[b][1, 1])
+                            {
+                                potencjalne.RemoveAt(i);
+                                licznik--;
+                                i--;
+                            }
+
+                        }
+                    }                    
+                }
+            }
+            return potencjalne;
         }
 
         static void Main(string[] args)
@@ -215,7 +402,7 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             List<List<int>> wynik = new List<List<int>>();
-            int iloscGeneracji = 10000;
+            int iloscGeneracji = 5000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
             Metody.zapisz(SudokuList);
@@ -242,6 +429,17 @@ namespace SudokuZaleznosci
                 Console.WriteLine((wykryteZaleznosci[i][0,0]+1) + " " + (wykryteZaleznosci[i][0, 1]+1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +  "\n");
             }
             Console.WriteLine(wykryteZaleznosci.Count);
+
+            Cube kostkaKoncowa = KostkaZaleznosci(wynik);
+            Cube kostkaKoncowaProcentowa = obliczProcentKostka(kostkaKoncowa);
+
+            List<int[,]> wykryteZaleznosciKostka = znajdzZaleznosciKostka(kostkaKoncowaProcentowa);
+            for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
+            {
+                Console.WriteLine((wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " + kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + "\n");
+            }
+            Console.WriteLine(wykryteZaleznosciKostka.Count);
+
             Console.ReadKey();
         }
     }
