@@ -11,6 +11,7 @@ namespace SudokuZaleznosci
     {
         public static void generuj(int a, SudokuBoard GameBoard, List<Matrix> listMatrix)
         {
+            bool inny = true;
             for (int b = 0; b < a; b++)
             {
                 Matrix CellControls = new Matrix(9,9);
@@ -23,7 +24,27 @@ namespace SudokuZaleznosci
                         CellControls[i, j] = GameBoard.GetCell(9 * i + j).Value;
                     }
                 }
-                listMatrix.Add(CellControls);
+                foreach (var item in listMatrix)
+                {
+                    if (CellControls == item)
+                    {
+                        inny = false;
+                        break;
+                    }
+                }
+                if (inny)
+                {
+                    listMatrix.Add(CellControls);
+                }
+                else
+                {
+                    b--;
+                }
+                inny = true;
+                if (b%1000==0)
+                {
+                    Console.WriteLine("iteracja nr: " + b);
+                }
             }
         }
 
@@ -34,7 +55,11 @@ namespace SudokuZaleznosci
             List<int[,]> macierzeZTrojka = new List<int[,]>();
 
             List<int[,]> macierzeZDwojka = new List<int[,]>();
-
+            int maxSuma = 0;
+            int tmp = 0;
+            int numer = 0;
+            bool brak = true;
+            int ileBrak = 0;
             for (int a = 0; a < SudokuList.Count; a++)
             {
                 for (int i = 0; i < Stale.ListaTrojek.Count; i++)
@@ -42,7 +67,8 @@ namespace SudokuZaleznosci
                     if (SudokuList[a][Stale.ListaTrojek[i][0,0], Stale.ListaTrojek[i][0,1]]== SudokuList[a][Stale.ListaTrojek[i][1, 0], Stale.ListaTrojek[i][1, 1]] &&
                         SudokuList[a][Stale.ListaTrojek[i][0, 0], Stale.ListaTrojek[i][0, 1]] == SudokuList[a][Stale.ListaTrojek[i][2, 0], Stale.ListaTrojek[i][2, 1]])
                     {
-                        macierzeZTrojka.Add(new int[1, 2] { { a+1, i } });                       
+                        macierzeZTrojka.Add(new int[1, 2] { { a+1, i } });
+                        tmp--;
                     }
                 }
                 for (int i = 0; i < Stale.ListaDwojek.Count; i++)
@@ -50,9 +76,24 @@ namespace SudokuZaleznosci
                     if (SudokuList[a][Stale.ListaDwojek[i][0, 0], Stale.ListaDwojek[i][0, 1]] == SudokuList[a][Stale.ListaDwojek[i][1, 0], Stale.ListaDwojek[i][1, 1]])
                     {
                         macierzeZDwojka.Add(new int[1, 2] { { a + 1, i  } });
+                        tmp++;
+                        brak = false;
                     }
                 }
+                if (tmp > maxSuma)
+                {
+                    maxSuma = tmp;
+                    numer = a;
+                }
+                tmp = 0;
+                if (brak)
+                {
+                    ileBrak++;
+                }
+                brak = true;
             }
+            Console.WriteLine("Maksymalna ilość trójek i dwójek to: " + maxSuma + " , w sudoku numer: " + numer); //za wczesnie bo trojki liczy potrojnie moze-1 przy trojce xD
+            Console.WriteLine("Sudoku bez żadnej dwójki i trójki: " + ileBrak);
             return new Tuple<List<int[,]>, List<int[,]>>(macierzeZTrojka,macierzeZDwojka) ;
         }
 
@@ -122,7 +163,7 @@ namespace SudokuZaleznosci
         public static List<int[,]> znajdzZaleznosci (Matrix macierz)
         {
             List<int[,]> potencjalne = new List<int[,]>();
-            int prog = 33;
+            int prog = 25;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
@@ -171,7 +212,7 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             Tuple<List<int[,]>, List<int[,]>> krotka;       
-            int iloscGeneracji = 1000;
+            int iloscGeneracji = 10000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             krotka = wykryjTrojkiIDwojki(SudokuList);
             Metody.zapisz(SudokuList);

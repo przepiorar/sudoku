@@ -207,7 +207,4 @@ namespace SudokuZaleznosci
             return text;
         }
     }
-    class Pomocnicze
-    {
-    }
 }
