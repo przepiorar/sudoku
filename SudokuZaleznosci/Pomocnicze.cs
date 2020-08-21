@@ -207,4 +207,86 @@ namespace SudokuZaleznosci
             return text;
         }
     }
+
+    public class Cube
+    {
+        private double[, ,] storage;
+
+        public double this[int row, int column,int height]
+        {
+            get { return storage[row, column,height]; }
+            set { storage[row, column,height] = value; }
+        }
+
+        public Cube(int a, int b,int c)
+        {
+            storage = new double[a, b,c];
+        }
+        public string WypiszPoziom(int c)
+        {
+            string text = "";
+            int i = 0;
+            int j = 0;
+            int poziom = 0;
+            int licznik = 0;
+            bool done = true;
+            foreach (var item in storage)
+            {
+                if (poziom == c)
+                {
+                    text += item + " ";
+                    i++;
+                    if (i == 9)
+                    {
+                        text += "\n";
+                        i = 0;
+                        j++;
+                        done = false;
+                    }
+                    else
+                    {
+                        if (i % 3 == 0)
+                        {
+                            text += "|";
+                        }
+                    }
+                    if (j % 3 == 0 && done == false && j != 9)
+                    {
+                        text += "___________________\n";
+                        done = true;
+                    }
+                }
+                licznik++;
+                if (licznik==72)
+                {
+                    poziom++;
+                    licznik = 0;
+                }
+            }
+            return text;
+        }
+
+        //public string OdczytajLinie(int a)
+        //{
+        //    string text = "";
+        //    for (int i = 0; i < 9; i++)
+        //    {
+        //        text += storage[a, i] + " ";
+        //        if (i % 3 == 2 && i != 8)
+        //        {
+        //            text += "|";
+        //        }
+        //    }
+        //    return text;
+        //}
+        //public string OdczytajLinie2(int a)
+        //{
+        //    string text = a + 1 + "\t|";
+        //    for (int i = 0; i < 72; i++)
+        //    {
+        //        text += storage[a, i] + "\t|";
+        //    }
+        //    return text;
+        //}
+    }
 }

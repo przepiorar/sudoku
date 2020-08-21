@@ -48,13 +48,17 @@ namespace SudokuZaleznosci
             }
         }
 
-        public static Tuple< List<int[,]>, List<int[,]>> wykryjTrojkiIDwojki(List<Matrix> SudokuList)
+        public static List<List<int>> wykryjTrojkiIDwojki(List<Matrix> SudokuList, int ilosc)
         //zwraca krotkę złożoną z 2 list 2-wymiarowych (numer sudoku w którym występuje i nr trójki/dwójki)
         //1 lista jest dla trójek, a 2 lista jest dla dwójek
         {
-            List<int[,]> macierzeZTrojka = new List<int[,]>();
+            List<List<int>> listaZaleznosci = new List<List<int>>(ilosc);// lista list składa się z listy dwójek i trójek dla każdego sudoku
 
-            List<int[,]> macierzeZDwojka = new List<int[,]>();
+            for (int i = 1; i < ilosc + 1; i++)
+            {
+                listaZaleznosci.Add(new List<int> { i }); //dodanie nr sudoku do listy zalezności
+            }
+            
             int maxSuma = 0;
             int tmp = 0;
             int numer = 0;
@@ -67,7 +71,7 @@ namespace SudokuZaleznosci
                     if (SudokuList[a][Stale.ListaTrojek[i][0,0], Stale.ListaTrojek[i][0,1]]== SudokuList[a][Stale.ListaTrojek[i][1, 0], Stale.ListaTrojek[i][1, 1]] &&
                         SudokuList[a][Stale.ListaTrojek[i][0, 0], Stale.ListaTrojek[i][0, 1]] == SudokuList[a][Stale.ListaTrojek[i][2, 0], Stale.ListaTrojek[i][2, 1]])
                     {
-                        macierzeZTrojka.Add(new int[1, 2] { { a+1, i } });
+                        listaZaleznosci[a].Add(i); // dodanie nr trójki do odpowiedniej podlisty(z numerem sudoku-1)
                         tmp--;
                     }
                 }
@@ -75,7 +79,7 @@ namespace SudokuZaleznosci
                 {
                     if (SudokuList[a][Stale.ListaDwojek[i][0, 0], Stale.ListaDwojek[i][0, 1]] == SudokuList[a][Stale.ListaDwojek[i][1, 0], Stale.ListaDwojek[i][1, 1]])
                     {
-                        macierzeZDwojka.Add(new int[1, 2] { { a + 1, i  } });
+                        listaZaleznosci[a].Add(i + 16); //dodanie nr dwójki do odpowiedniej podlisty(z numerem sudoku-1)
                         tmp++;
                         brak = false;
                     }
@@ -94,28 +98,9 @@ namespace SudokuZaleznosci
             }
             Console.WriteLine("Maksymalna ilość trójek i dwójek to: " + maxSuma + " , w sudoku numer: " + numer); //za wczesnie bo trojki liczy potrojnie moze-1 przy trojce xD
             Console.WriteLine("Sudoku bez żadnej dwójki i trójki: " + ileBrak);
-            return new Tuple<List<int[,]>, List<int[,]>>(macierzeZTrojka,macierzeZDwojka) ;
-        }
-
-        public static List<List<int>> wykryjZaleznosci(Tuple<List<int[,]>,List<int[,]>> krotka, int ilosc)
-        {
-            List<List<int>> listaZaleznosci = new List<List<int>>(ilosc);
-
-            for (int i = 1; i < ilosc+1; i++)
-            {
-                listaZaleznosci.Add(new List<int> {i}); //dodanie nr sudoku do listy zalezności
-            }
-            foreach (var item in krotka.Item1)
-            {
-                listaZaleznosci[item[0, 0]-1].Add(item[0, 1]); // dodanie nr trójki do odpowiedniej podlisty(z numerem sudoku-1)
-            }
-            foreach (var item in krotka.Item2)
-            {
-                listaZaleznosci[item[0, 0]-1].Add(item[0, 1] + 16); //dodanie nr dwójki do odpowiedniej podlisty(z numerem sudoku-1)
-            }
             for (int i = 0; i < listaZaleznosci.Count; i++)
             {
-                if (listaZaleznosci[i].Count <3)
+                if (listaZaleznosci[i].Count < 3)//jeśli jest tylko jedna lub żadna trójka lub dwójka
                 {
                     listaZaleznosci.RemoveAt(i);
                     i--;
@@ -205,20 +190,36 @@ namespace SudokuZaleznosci
             }
             return potencjalne;
         }
-        
+
+
+        public static Matrix KostkaZaleznosci(List<List<int>> wynik,Matrix macierz)
+        {
+            Matrix macierzWynikowa = new Matrix(72, 72);
+            foreach (var item in wynik)
+            {
+                for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
+                {
+                    for (int j = i + 1; j < item.Count; j++)
+                    {
+                        macierzWynikowa[item[i], item[j]]++; //dodanie zaleznosci miedzy a i b
+                        macierzWynikowa[item[j], item[i]]++;
+                    }
+                    macierzWynikowa[item[i], item[i]]++; //dodanie informacji ze w sudoku wystapila dana trojka lub dwojka
+                }
+            }
+            return macierzWynikowa;
+        }
 
         static void Main(string[] args)
         {
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
-            Tuple<List<int[,]>, List<int[,]>> krotka;       
+            List<List<int>> wynik = new List<List<int>>();
             int iloscGeneracji = 10000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
-            krotka = wykryjTrojkiIDwojki(SudokuList);
+            wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
             Metody.zapisz(SudokuList);
-
-            List<List<int>> wynik = new List<List<int>>();
-            wynik = wykryjZaleznosci(krotka, iloscGeneracji);
+            
             //foreach (var item in wynik)
             //{
             //    string text = "nr sudoku: " + item[0] + " wykryto: ";
