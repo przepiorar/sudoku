@@ -207,19 +207,28 @@ namespace SudokuZaleznosci
             {
                 for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
                 {
-                    for (int j = i + 1; j < item.Count; j++)
+                    //for (int j = i + 1; j < item.Count; j++)
+                    //{
+                    //    for (int k = i + 2; k < item.Count; k++)
+                    //    {
+                    //        int i1 = item[i];
+                    //        int j1 = item[j];
+                    //        int k1 = item[k];
+                    //        kostkaWynikowa[item[i], item[j], item[k]]++;
+                    //        kostkaWynikowa[item[i], item[k], item[j]]++;
+                    //        kostkaWynikowa[item[j], item[i], item[k]]++;
+                    //        kostkaWynikowa[item[j], item[k], item[i]]++;
+                    //        kostkaWynikowa[item[k], item[j], item[i]]++;
+                    //        kostkaWynikowa[item[k], item[i], item[j]]++;
+                    //    }
+                    //}
+                    for (int j = 1; j < item.Count; j++)
                     {
-                        for (int k = i + 2; k < item.Count; k++)
+                        for (int k = 1; k < item.Count; k++)
                         {
-                            kostkaWynikowa[item[i], item[j], item[k]]++;
-                            kostkaWynikowa[item[i], item[k], item[j]]++;
-                            kostkaWynikowa[item[j], item[i], item[k]]++;
-                            kostkaWynikowa[item[j], item[k], item[i]]++;
-                            kostkaWynikowa[item[k], item[j], item[i]]++;
-                            kostkaWynikowa[item[k], item[i], item[j]]++;
+                            kostkaWynikowa[item[i], item[j], item[k]]++;//dodanie informacji ze w sudoku wystapila dana para trojko lub dwojki
                         }
                     }
-                    kostkaWynikowa[item[i], item[i], item[i]]++; //dodanie informacji ze w sudoku wystapila dana trojka lub dwojka
                 }
             }
             return kostkaWynikowa;
@@ -234,22 +243,28 @@ namespace SudokuZaleznosci
                 {
                     for (int k = 0; k < 72; k++)
                     {
-                        if (kostka[i, i, i] != 0)
+                        double suma = kostka[i,j,i];
+                        double wartosc = kostka[i, j, k];
+                        //for (int l = 0; l < 72; l++)
+                       // {
+                        //    suma += kostka[i, j, l];
+                       // }
+                        if (suma != 0 && wartosc>2)
                         {
-                            kostkaWynikowa[i, j,k] = Math.Round(100 * kostka[i, j, k] / kostka[i, i, i], 2);
+                            kostkaWynikowa[i, j, k] += Math.Round(100 *wartosc /suma, 2);
                         }
                         else
-                            kostkaWynikowa[i, j,k] = 0;
+                            kostkaWynikowa[i, j, k] += 0;
                     }
                 }
             }
             return kostkaWynikowa;
         }
 
-        public static List<int[,]> znajdzZaleznosciKostka(Cube macierz)
+        public static List<int[,]> znajdzZaleznosciKostka(Cube kostka)
         {
             List<int[,]> potencjalne = new List<int[,]>();
-            int prog = 25;
+            int prog = 50;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
@@ -257,7 +272,7 @@ namespace SudokuZaleznosci
                     for (int k = 0; k < 72; k++)
                     {
 
-                        if (prog < macierz[i, j,k] && i != j && i!=k && j!=k)
+                        if (prog <= kostka[i, j,k] && i != j && i!=k && j!=k)
                         {
                             potencjalne.Add(new int[1, 3] { { i, j,k } });
                         }
@@ -270,7 +285,7 @@ namespace SudokuZaleznosci
                 int a = potencjalne[i][0, 0];
                 int b = potencjalne[i][0, 1];
                 int c = potencjalne[i][0, 2];
-                if (a < 16 && b < 16 && c < 16 || a >= 16 && b >= 16 && c > 16)
+                if (a < 16 && b < 16 && c < 16 || a >= 16 && b >= 16 && c >= 16)
                 { }
                 else
                 {
@@ -402,17 +417,17 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             List<List<int>> wynik = new List<List<int>>();
-            int iloscGeneracji = 5000;
+            int iloscGeneracji = 10000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
             Metody.zapisz(SudokuList);
-            
+
             //foreach (var item in wynik)
             //{
             //    string text = "nr sudoku: " + item[0] + " wykryto: ";
             //    for (int i = 1; i < item.Count; i++)
             //    {
-            //        text += item[i]+1 + " ";
+            //        text += item[i] + 1 + " ";
             //    }
             //    Console.WriteLine(text);
             //}
