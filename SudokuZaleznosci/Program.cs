@@ -417,7 +417,7 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             List<List<int>> wynik = new List<List<int>>();
-            int iloscGeneracji = 10000;
+            int iloscGeneracji = 20000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
             Metody.zapisz(SudokuList);
@@ -439,21 +439,25 @@ namespace SudokuZaleznosci
             Metody.zapisz2(macierzKoncowaProcentowa, nazwa);
 
             List<int[,]> wykryteZaleznosci = znajdzZaleznosci(macierzKoncowaProcentowa);
-            for (int i = 0; i < wykryteZaleznosci.Count; i++)
-            {
-                Console.WriteLine((wykryteZaleznosci[i][0,0]+1) + " " + (wykryteZaleznosci[i][0, 1]+1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +  "\n");
-            }
-            Console.WriteLine(wykryteZaleznosci.Count);
+            Metody.zapiszZaleznosci(wykryteZaleznosci, "pary.txt", macierzKoncowaProcentowa);
+            //for (int i = 0; i < wykryteZaleznosci.Count; i++)
+            //{
+            //    Console.WriteLine((wykryteZaleznosci[i][0,0]+1) + " " + (wykryteZaleznosci[i][0, 1]+1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +  "\n");
+            //}
+            //Console.WriteLine(wykryteZaleznosci.Count);
 
             Cube kostkaKoncowa = KostkaZaleznosci(wynik);
             Cube kostkaKoncowaProcentowa = obliczProcentKostka(kostkaKoncowa);
 
             List<int[,]> wykryteZaleznosciKostka = znajdzZaleznosciKostka(kostkaKoncowaProcentowa);
-            for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
-            {
-                Console.WriteLine((wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " + kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + "\n");
-            }
-            Console.WriteLine(wykryteZaleznosciKostka.Count);
+            Metody.zapiszZaleznosciKostka(wykryteZaleznosciKostka, "kostka.txt", kostkaKoncowaProcentowa, kostkaKoncowa);
+            //for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
+            //{
+            //    Console.WriteLine((wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " +
+            //        kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + " , ilosc wystapien: "+
+            //        kostkaKoncowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] +"\n");
+            //}
+            //Console.WriteLine(wykryteZaleznosciKostka.Count);
 
             Console.ReadKey();
         }

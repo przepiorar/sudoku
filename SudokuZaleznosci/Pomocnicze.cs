@@ -136,6 +136,37 @@ namespace SudokuZaleznosci
             }
             sw.Close();
         }
+        public static void zapiszZaleznosci(List<int[,]> wykryteZaleznosci, string name, Matrix macierzKoncowaProcentowa )
+        {
+            string FILE_NAME = name;
+            StreamWriter sw = new StreamWriter(FILE_NAME);
+            string text = "";
+            for (int i = 0; i < wykryteZaleznosci.Count; i++)
+            {
+                text = (wykryteZaleznosci[i][0, 0] + 1) + " " + (wykryteZaleznosci[i][0, 1] + 1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] + "\n";
+                Console.WriteLine(text);
+                sw.WriteLine(text);
+            }
+            Console.WriteLine(wykryteZaleznosci.Count);
+            sw.Close();
+        }
+        public static void zapiszZaleznosciKostka(List<int[,]> wykryteZaleznosciKostka, string name, Cube kostkaKoncowaProcentowa, Cube kostkaKoncowa)
+        {
+            string FILE_NAME = name;
+            StreamWriter sw = new StreamWriter(FILE_NAME);
+            string text = "";
+
+            for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
+            {
+                text=(wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " +
+                    kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + " , ilosc wystapien: " +
+                    kostkaKoncowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + "\n";
+                Console.WriteLine(text);
+                sw.WriteLine(text);
+            }
+            Console.WriteLine(wykryteZaleznosciKostka.Count);
+            sw.Close();
+        }
     }
     public class Matrix
     {
