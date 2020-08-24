@@ -136,19 +136,35 @@ namespace SudokuZaleznosci
             }
             sw.Close();
         }
-        public static void zapiszZaleznosci(List<int[,]> wykryteZaleznosci, string name, Matrix macierzKoncowaProcentowa )
+        public static void zapiszZaleznosci(List<int[,]> wykryteZaleznosci, string name, Matrix macierzKoncowaProcentowa , Matrix macierzKoncowa)
         {
             string FILE_NAME = name;
             StreamWriter sw = new StreamWriter(FILE_NAME);
             string text = "";
             for (int i = 0; i < wykryteZaleznosci.Count; i++)
             {
-                text = (wykryteZaleznosci[i][0, 0] + 1) + " " + (wykryteZaleznosci[i][0, 1] + 1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] + "\n";
+                text = (wykryteZaleznosci[i][0, 0] + 1) + " " + (wykryteZaleznosci[i][0, 1] + 1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +
+                    ", ilosc wystapien zaleznosci nr"+ (wykryteZaleznosci[i][0, 0]+1) + " :"+macierzKoncowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 0]] +"\n";
                 Console.WriteLine(text);
                 sw.WriteLine(text);
             }
             Console.WriteLine(wykryteZaleznosci.Count);
+            sw.WriteLine(wykryteZaleznosci.Count);
             sw.Close();
+
+            var csv = new StringBuilder();
+
+            csv.AppendLine("nr zaleznosci" +";" + "procent");
+            for (int i = 0; i < wykryteZaleznosci.Count; i++)
+            {
+                var first = (wykryteZaleznosci[i][0, 0] + 1).ToString()+ " & "+(wykryteZaleznosci[i][0, 1] + 1).ToString();
+                var second = macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]].ToString();
+                //Suggestion made by KyleMit
+                var newLine = string.Format("{0};{1}", first, second);
+                csv.AppendLine(newLine);
+            }
+            //after your loop
+            File.WriteAllText("arkusz.csv", csv.ToString());
         }
         public static void zapiszZaleznosciKostka(List<int[,]> wykryteZaleznosciKostka, string name, Cube kostkaKoncowaProcentowa, Cube kostkaKoncowa)
         {
@@ -159,13 +175,28 @@ namespace SudokuZaleznosci
             for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
             {
                 text=(wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " +
-                    kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + " , ilosc wystapien: " +
-                    kostkaKoncowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + "\n";
+                    kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + " , ilosc wystapien pierwszych 2 dwojek lub/i trojek: " +
+                    kostkaKoncowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 0]] + "\n";
                 Console.WriteLine(text);
                 sw.WriteLine(text);
             }
             Console.WriteLine(wykryteZaleznosciKostka.Count);
+            sw.WriteLine(wykryteZaleznosciKostka.Count);
             sw.Close();
+
+            var csv = new StringBuilder();
+
+            csv.AppendLine("nr, zaleznosci" + ";" + "procent");
+            for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
+            {
+                var first = (wykryteZaleznosciKostka[i][0, 0] + 1).ToString() + " & " + (wykryteZaleznosciKostka[i][0, 1] + 1).ToString() + " & " + (wykryteZaleznosciKostka[i][0, 2] + 1).ToString();
+                var second = kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]].ToString();
+                //Suggestion made by KyleMit
+                var newLine = string.Format("{0};{1}", first, second);
+                csv.AppendLine(newLine);
+            }
+            //after your loop
+            File.WriteAllText("arkuszKostka.csv", csv.ToString());
         }
     }
     public class Matrix
@@ -296,28 +327,5 @@ namespace SudokuZaleznosci
             }
             return text;
         }
-
-        //public string OdczytajLinie(int a)
-        //{
-        //    string text = "";
-        //    for (int i = 0; i < 9; i++)
-        //    {
-        //        text += storage[a, i] + " ";
-        //        if (i % 3 == 2 && i != 8)
-        //        {
-        //            text += "|";
-        //        }
-        //    }
-        //    return text;
-        //}
-        //public string OdczytajLinie2(int a)
-        //{
-        //    string text = a + 1 + "\t|";
-        //    for (int i = 0; i < 72; i++)
-        //    {
-        //        text += storage[a, i] + "\t|";
-        //    }
-        //    return text;
-        //}
     }
 }

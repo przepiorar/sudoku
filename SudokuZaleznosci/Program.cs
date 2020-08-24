@@ -106,6 +106,14 @@ namespace SudokuZaleznosci
                     i--;
                 }
             }
+            string FILE_NAME = "maksymalna ilosc zaleznosci.txt";
+            StreamWriter sw = new StreamWriter(FILE_NAME);
+            string text = "Maksymalna ilość trójek i dwójek to: " + maxSuma + " , w sudoku numer: " + numer;
+            sw.WriteLine(text);
+            text = "Sudoku bez żadnej dwójki i trójki: " + ileBrak;
+            sw.WriteLine(text);
+            sw.Close();
+
             return listaZaleznosci;
         }
 
@@ -207,21 +215,6 @@ namespace SudokuZaleznosci
             {
                 for (int i = 1; i < item.Count; i++) //pierwszy element to numer sudoku
                 {
-                    //for (int j = i + 1; j < item.Count; j++)
-                    //{
-                    //    for (int k = i + 2; k < item.Count; k++)
-                    //    {
-                    //        int i1 = item[i];
-                    //        int j1 = item[j];
-                    //        int k1 = item[k];
-                    //        kostkaWynikowa[item[i], item[j], item[k]]++;
-                    //        kostkaWynikowa[item[i], item[k], item[j]]++;
-                    //        kostkaWynikowa[item[j], item[i], item[k]]++;
-                    //        kostkaWynikowa[item[j], item[k], item[i]]++;
-                    //        kostkaWynikowa[item[k], item[j], item[i]]++;
-                    //        kostkaWynikowa[item[k], item[i], item[j]]++;
-                    //    }
-                    //}
                     for (int j = 1; j < item.Count; j++)
                     {
                         for (int k = 1; k < item.Count; k++)
@@ -245,10 +238,6 @@ namespace SudokuZaleznosci
                     {
                         double suma = kostka[i,j,i];
                         double wartosc = kostka[i, j, k];
-                        //for (int l = 0; l < 72; l++)
-                       // {
-                        //    suma += kostka[i, j, l];
-                       // }
                         if (suma != 0 && wartosc>2)
                         {
                             kostkaWynikowa[i, j, k] += Math.Round(100 *wartosc /suma, 2);
@@ -264,7 +253,7 @@ namespace SudokuZaleznosci
         public static List<int[,]> znajdzZaleznosciKostka(Cube kostka)
         {
             List<int[,]> potencjalne = new List<int[,]>();
-            int prog = 50;
+            int prog = 33;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
@@ -417,7 +406,7 @@ namespace SudokuZaleznosci
             SudokuBoard GameBoard = new SudokuBoard();
             List<Matrix> SudokuList = new List<Matrix>();
             List<List<int>> wynik = new List<List<int>>();
-            int iloscGeneracji = 20000;
+            int iloscGeneracji = 100000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
             Metody.zapisz(SudokuList);
@@ -439,25 +428,13 @@ namespace SudokuZaleznosci
             Metody.zapisz2(macierzKoncowaProcentowa, nazwa);
 
             List<int[,]> wykryteZaleznosci = znajdzZaleznosci(macierzKoncowaProcentowa);
-            Metody.zapiszZaleznosci(wykryteZaleznosci, "pary.txt", macierzKoncowaProcentowa);
-            //for (int i = 0; i < wykryteZaleznosci.Count; i++)
-            //{
-            //    Console.WriteLine((wykryteZaleznosci[i][0,0]+1) + " " + (wykryteZaleznosci[i][0, 1]+1) + " proc: " + macierzKoncowaProcentowa[wykryteZaleznosci[i][0, 0], wykryteZaleznosci[i][0, 1]] +  "\n");
-            //}
-            //Console.WriteLine(wykryteZaleznosci.Count);
+            Metody.zapiszZaleznosci(wykryteZaleznosci, "pary.txt", macierzKoncowaProcentowa,macierzKoncowa);
 
             Cube kostkaKoncowa = KostkaZaleznosci(wynik);
             Cube kostkaKoncowaProcentowa = obliczProcentKostka(kostkaKoncowa);
 
             List<int[,]> wykryteZaleznosciKostka = znajdzZaleznosciKostka(kostkaKoncowaProcentowa);
             Metody.zapiszZaleznosciKostka(wykryteZaleznosciKostka, "kostka.txt", kostkaKoncowaProcentowa, kostkaKoncowa);
-            //for (int i = 0; i < wykryteZaleznosciKostka.Count; i++)
-            //{
-            //    Console.WriteLine((wykryteZaleznosciKostka[i][0, 0] + 1) + " " + (wykryteZaleznosciKostka[i][0, 1] + 1) + " " + (wykryteZaleznosciKostka[i][0, 2] + 1) + " proc: " +
-            //        kostkaKoncowaProcentowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] + " , ilosc wystapien: "+
-            //        kostkaKoncowa[wykryteZaleznosciKostka[i][0, 0], wykryteZaleznosciKostka[i][0, 1], wykryteZaleznosciKostka[i][0, 2]] +"\n");
-            //}
-            //Console.WriteLine(wykryteZaleznosciKostka.Count);
 
             Console.ReadKey();
         }

@@ -1,0 +1,405 @@
+1 4 17 proc: 37,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+1 4 33 proc: 35,11 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+1 7 23 proc: 35,16 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 91
+
+1 16 67 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+1 16 69 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+2 4 17 proc: 35,4 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 113
+
+2 5 17 proc: 33,85 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 130
+
+2 8 17 proc: 35,9 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 117
+
+2 9 56 proc: 37,31 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 67
+
+2 9 63 proc: 34,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 67
+
+2 11 53 proc: 33,06 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 124
+
+2 15 36 proc: 39,74 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+2 15 56 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+2 19 36 proc: 34,73 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 455
+
+3 4 41 proc: 36,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 46
+
+3 6 24 proc: 34,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 79
+
+3 8 20 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+3 11 39 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+3 13 54 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+3 13 68 proc: 38,24 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+3 14 28 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+3 14 53 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+3 14 54 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+3 50 20 proc: 35,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 212
+
+3 69 35 proc: 39,59 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 245
+
+4 1 17 proc: 37,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+4 1 33 proc: 35,11 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+4 2 17 proc: 35,4 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 113
+
+4 3 41 proc: 36,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 46
+
+4 7 17 proc: 40,58 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 69
+
+4 7 61 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 69
+
+4 8 17 proc: 40,37 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 109
+
+4 14 17 proc: 37,5 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+4 14 41 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+4 24 17 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 537
+
+4 47 17 proc: 34,75 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 282
+
+4 51 17 proc: 35,99 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 553
+
+4 53 17 proc: 35,56 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 644
+
+4 55 17 proc: 33,73 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 418
+
+5 2 17 proc: 33,85 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 130
+
+5 6 39 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 54
+
+5 6 58 proc: 35,19 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 54
+
+5 7 19 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+5 7 23 proc: 33,93 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+5 7 67 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+5 8 35 proc: 38,24 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 102
+
+5 11 63 proc: 37,1 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 62
+
+6 3 24 proc: 34,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 79
+
+6 5 39 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 54
+
+6 5 58 proc: 35,19 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 54
+
+6 9 56 proc: 34,43 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 61
+
+6 11 17 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 75
+
+7 1 23 proc: 35,16 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 91
+
+7 4 17 proc: 40,58 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 69
+
+7 4 61 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 69
+
+7 5 19 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+7 5 23 proc: 33,93 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+7 5 67 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+7 9 25 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+7 9 57 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+7 9 62 proc: 41,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+7 10 70 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+7 11 53 proc: 34 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 50
+
+7 13 53 proc: 37,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 74
+
+7 14 53 proc: 34,21 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+7 16 23 proc: 35 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 60
+
+7 48 17 proc: 33,25 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 421
+
+8 2 17 proc: 35,9 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 117
+
+8 3 20 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+8 4 17 proc: 40,37 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 109
+
+8 5 35 proc: 38,24 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 102
+
+8 11 20 proc: 34,09 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 44
+
+8 12 20 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+8 12 35 proc: 34,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+8 12 39 proc: 34,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+8 47 17 proc: 33,15 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 359
+
+9 2 56 proc: 37,31 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 67
+
+9 2 63 proc: 34,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 67
+
+9 6 56 proc: 34,43 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 61
+
+9 7 25 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+9 7 57 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+9 7 62 proc: 41,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+9 10 21 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+9 10 25 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+9 11 60 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 30
+
+9 11 63 proc: 36,67 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 30
+
+9 12 25 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+9 12 57 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+9 13 35 proc: 36,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+9 13 60 proc: 38,16 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+9 14 32 proc: 44,44 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 45
+
+9 15 56 proc: 36,92 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 65
+
+9 16 60 proc: 34,34 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 99
+
+9 27 25 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 234
+
+10 7 70 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+10 9 21 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+10 9 25 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+10 12 17 proc: 35,11 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+10 12 53 proc: 37,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+10 14 53 proc: 33,91 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 115
+
+10 56 53 proc: 34,83 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 422
+
+11 2 53 proc: 33,06 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 124
+
+11 3 39 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+11 5 63 proc: 37,1 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 62
+
+11 6 17 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 75
+
+11 7 53 proc: 34 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 50
+
+11 8 20 proc: 34,09 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 44
+
+11 9 60 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 30
+
+11 9 63 proc: 36,67 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 30
+
+11 12 53 proc: 36,99 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 73
+
+11 13 37 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 68
+
+11 13 53 proc: 36,76 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 68
+
+11 14 53 proc: 34,74 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 95
+
+11 16 28 proc: 33,8 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 71
+
+11 16 53 proc: 33,8 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 71
+
+11 28 53 proc: 34,75 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 469
+
+11 30 53 proc: 33,43 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 332
+
+11 56 53 proc: 33,26 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 442
+
+12 8 20 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+12 8 35 proc: 34,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+12 8 39 proc: 34,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 96
+
+12 9 25 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+12 9 57 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+12 10 17 proc: 35,11 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+12 10 53 proc: 37,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 94
+
+12 11 53 proc: 36,99 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 73
+
+12 14 36 proc: 33,93 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 112
+
+12 14 53 proc: 47,32 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 112
+
+12 31 53 proc: 33,55 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 629
+
+13 3 54 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+13 3 68 proc: 38,24 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 34
+
+13 7 53 proc: 37,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 74
+
+13 9 35 proc: 36,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+13 9 60 proc: 38,16 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+13 11 37 proc: 35,29 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 68
+
+13 11 53 proc: 36,76 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 68
+
+13 14 25 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+13 14 44 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+13 15 67 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+13 16 17 proc: 34,41 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+14 3 28 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+14 3 53 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+14 3 54 proc: 35,42 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 48
+
+14 4 17 proc: 37,5 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+14 4 41 proc: 35,71 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 56
+
+14 7 53 proc: 34,21 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 76
+
+14 9 32 proc: 44,44 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 45
+
+14 10 53 proc: 33,91 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 115
+
+14 11 53 proc: 34,74 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 95
+
+14 12 36 proc: 33,93 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 112
+
+14 12 53 proc: 47,32 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 112
+
+14 13 25 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+14 13 44 proc: 33,96 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 53
+
+14 15 32 proc: 35,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 88
+
+14 45 53 proc: 33,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 461
+
+14 56 53 proc: 34,52 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 591
+
+15 2 36 proc: 39,74 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+15 2 56 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+15 9 56 proc: 36,92 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 65
+
+15 13 67 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 63
+
+15 14 32 proc: 35,23 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 88
+
+15 16 39 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+15 16 53 proc: 35,9 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+15 27 53 proc: 33,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 440
+
+16 1 67 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+16 1 69 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+16 7 23 proc: 35 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 60
+
+16 9 60 proc: 34,34 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 99
+
+16 11 28 proc: 33,8 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 71
+
+16 11 53 proc: 33,8 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 71
+
+16 13 17 proc: 34,41 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 93
+
+16 15 39 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+16 15 53 proc: 35,9 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 78
+
+16 27 53 proc: 35,15 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 421
+
+19 2 36 proc: 34,73 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 455
+
+24 4 17 proc: 33,33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 537
+
+27 9 25 proc: 34,62 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 234
+
+27 15 53 proc: 33,18 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 440
+
+27 16 53 proc: 35,15 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 421
+
+27 30 53 proc: 33,35 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 1589
+
+27 31 53 proc: 33,55 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2149
+
+27 32 53 proc: 33,19 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2076
+
+27 57 53 proc: 33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2418
+
+28 11 53 proc: 34,75 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 469
+
+30 11 53 proc: 33,43 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 332
+
+30 27 53 proc: 33,35 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 1589
+
+31 12 53 proc: 33,55 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 629
+
+31 27 53 proc: 33,55 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2149
+
+32 27 53 proc: 33,19 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2076
+
+45 14 53 proc: 33,84 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 461
+
+47 4 17 proc: 34,75 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 282
+
+47 8 17 proc: 33,15 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 359
+
+48 7 17 proc: 33,25 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 421
+
+50 3 20 proc: 35,38 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 212
+
+51 4 17 proc: 35,99 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 553
+
+53 4 17 proc: 35,56 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 644
+
+55 4 17 proc: 33,73 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 418
+
+56 10 53 proc: 34,83 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 422
+
+56 11 53 proc: 33,26 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 442
+
+56 14 53 proc: 34,52 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 591
+
+57 27 53 proc: 33 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 2418
+
+69 3 35 proc: 39,59 , ilosc wystapien pierwszych 2 dwojek lub/i trojek: 245
+
+202
