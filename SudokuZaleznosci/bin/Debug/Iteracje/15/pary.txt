@@ -1,0 +1,67 @@
+2 17 proc: 25,42, ilosc wystapien zaleznosci nr2 :3682
+
+3 20 proc: 25,24, ilosc wystapien zaleznosci nr3 :1684
+
+4 17 proc: 26,84, ilosc wystapien zaleznosci nr4 :2776
+
+6 17 proc: 25,85, ilosc wystapien zaleznosci nr6 :2665
+
+7 17 proc: 25,04, ilosc wystapien zaleznosci nr7 :2137
+
+8 35 proc: 25,15, ilosc wystapien zaleznosci nr8 :3018
+
+10 53 proc: 28,92, ilosc wystapien zaleznosci nr10 :2818
+
+11 53 proc: 26,84, ilosc wystapien zaleznosci nr11 :2299
+
+12 53 proc: 25,47, ilosc wystapien zaleznosci nr12 :3333
+
+13 53 proc: 26,04, ilosc wystapien zaleznosci nr13 :2469
+
+14 53 proc: 25,16, ilosc wystapien zaleznosci nr14 :2754
+
+15 53 proc: 25,87, ilosc wystapien zaleznosci nr15 :3058
+
+16 53 proc: 27,1, ilosc wystapien zaleznosci nr16 :3000
+
+17 53 proc: 25,82, ilosc wystapien zaleznosci nr17 :21878
+
+20 17 proc: 25,16, ilosc wystapien zaleznosci nr20 :20131
+
+22 17 proc: 25,16, ilosc wystapien zaleznosci nr22 :12296
+
+27 53 proc: 28,18, ilosc wystapien zaleznosci nr27 :11912
+
+28 53 proc: 26,22, ilosc wystapien zaleznosci nr28 :16557
+
+29 53 proc: 25,59, ilosc wystapien zaleznosci nr29 :14793
+
+30 53 proc: 26,49, ilosc wystapien zaleznosci nr30 :11109
+
+31 53 proc: 26,22, ilosc wystapien zaleznosci nr31 :16687
+
+32 53 proc: 26,57, ilosc wystapien zaleznosci nr32 :16758
+
+45 53 proc: 26,63, ilosc wystapien zaleznosci nr45 :16653
+
+47 17 proc: 26,77, ilosc wystapien zaleznosci nr47 :11172
+
+48 17 proc: 25,1, ilosc wystapien zaleznosci nr48 :16692
+
+52 17 proc: 25,42, ilosc wystapien zaleznosci nr52 :16502
+
+54 53 proc: 26,84, ilosc wystapien zaleznosci nr54 :16671
+
+55 53 proc: 26,18, ilosc wystapien zaleznosci nr55 :12127
+
+56 53 proc: 26,93, ilosc wystapien zaleznosci nr56 :18615
+
+57 53 proc: 25,98, ilosc wystapien zaleznosci nr57 :17079
+
+58 53 proc: 26,14, ilosc wystapien zaleznosci nr58 :12007
+
+59 53 proc: 26,03, ilosc wystapien zaleznosci nr59 :16525
+
+60 53 proc: 26,26, ilosc wystapien zaleznosci nr60 :16742
+
+33

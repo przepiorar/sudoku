@@ -1,0 +1,2 @@
+Maksymalna ilość trójek i dwójek to: 19 , w sudoku numer: 28189
+Sudoku bez żadnej dwójki i trójki: 8
