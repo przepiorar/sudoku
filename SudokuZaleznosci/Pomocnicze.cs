@@ -101,9 +101,9 @@ namespace SudokuZaleznosci
     }
     public class Metody
     {
-        public static void zapisz(List<Matrix> SudokuList)
+        public static void zapisz(List<Matrix> SudokuList, string nazwa)
         {
-            string FILE_NAME = "Wynik.txt";
+            string FILE_NAME = nazwa;
             StreamWriter sw = new StreamWriter(FILE_NAME);
             for (int i = 0; i < SudokuList.Count; i++)
             {
@@ -119,9 +119,9 @@ namespace SudokuZaleznosci
             }
             sw.Close();
         }
-        public static void zapisz2(Matrix MacierzKoncowa, string name)
+        public static void zapisz2(Matrix MacierzKoncowa, string nazwa)
         {
-            string FILE_NAME = name;
+            string FILE_NAME = nazwa;
             string text = "";
             for (int i = 0; i < 73; i++)
             {
@@ -164,7 +164,7 @@ namespace SudokuZaleznosci
                 csv.AppendLine(newLine);
             }
             //after your loop
-            File.WriteAllText("arkusz.csv", csv.ToString());
+            File.WriteAllText("pary.csv", csv.ToString());
         }
         public static void zapiszZaleznosciKostka(List<int[,]> wykryteZaleznosciKostka, string name, Cube kostkaKoncowaProcentowa, Cube kostkaKoncowa)
         {

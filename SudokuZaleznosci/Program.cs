@@ -106,7 +106,7 @@ namespace SudokuZaleznosci
                     i--;
                 }
             }
-            string FILE_NAME = "maksymalna ilosc zaleznosci.txt";
+            string FILE_NAME = "iloscZaleznosciIteracja.txt";
             StreamWriter sw = new StreamWriter(FILE_NAME);
             string text = "Maksymalna ilość trójek i dwójek to: " + maxSuma + " , w sudoku numer: " + numer;
             sw.WriteLine(text);
@@ -409,7 +409,8 @@ namespace SudokuZaleznosci
             int iloscGeneracji = 100000;
             generuj(iloscGeneracji, GameBoard, SudokuList);
             wynik = wykryjTrojkiIDwojki(SudokuList, iloscGeneracji);
-            Metody.zapisz(SudokuList);
+            string nazwa = "planszeSudoku.txt";
+            Metody.zapisz(SudokuList, nazwa);
 
             //foreach (var item in wynik)
             //{
@@ -421,7 +422,7 @@ namespace SudokuZaleznosci
             //    Console.WriteLine(text);
             //}
             Matrix macierzKoncowa = MacierzZaleznosci(wynik);
-            string nazwa = "Wynik2.txt";
+            nazwa = "MacierzLiczbowa.txt";
             Metody.zapisz2(macierzKoncowa, nazwa);
             Matrix macierzKoncowaProcentowa = obliczProcent(macierzKoncowa);
             nazwa = "Wynik3.txt";
