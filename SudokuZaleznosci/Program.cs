@@ -49,7 +49,7 @@ namespace SudokuZaleznosci
         }
 
         public static List<List<int>> wykryjTrojkiIDwojki(List<Matrix> SudokuList, int ilosc)
-        //zwraca krotkę złożoną z 2 list 2-wymiarowych (numer sudoku w którym występuje i nr trójki/dwójki)
+        //zwraca listę list złożoną z 2 list 2-wymiarowych (numer sudoku w którym występuje i nr trójki/dwójki)
         //1 lista jest dla trójek, a 2 lista jest dla dwójek
         {
             List<List<int>> listaZaleznosci = new List<List<int>>(ilosc);// lista list składa się z listy dwójek i trójek dla każdego sudoku
@@ -153,10 +153,9 @@ namespace SudokuZaleznosci
             return macierzWynikowa;
         }
 
-        public static List<int[,]> znajdzZaleznosci (Matrix macierz)
+        public static List<int[,]> znajdzZaleznosci (Matrix macierz, int prog)
         {
             List<int[,]> potencjalne = new List<int[,]>();
-            int prog = 25;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
@@ -250,10 +249,9 @@ namespace SudokuZaleznosci
             return kostkaWynikowa;
         }
 
-        public static List<int[,]> znajdzZaleznosciKostka(Cube kostka)
+        public static List<int[,]> znajdzZaleznosciKostka(Cube kostka, int prog)
         {
             List<int[,]> potencjalne = new List<int[,]>();
-            int prog = 33;
             for (int i = 0; i < 72; i++)
             {
                 for (int j = 0; j < 72; j++)
@@ -412,15 +410,6 @@ namespace SudokuZaleznosci
             string nazwa = "planszeSudoku.txt";
             Metody.zapisz(SudokuList, nazwa);
 
-            //foreach (var item in wynik)
-            //{
-            //    string text = "nr sudoku: " + item[0] + " wykryto: ";
-            //    for (int i = 1; i < item.Count; i++)
-            //    {
-            //        text += item[i] + 1 + " ";
-            //    }
-            //    Console.WriteLine(text);
-            //}
             Matrix macierzKoncowa = MacierzZaleznosci(wynik);
             nazwa = "MacierzLiczbowa.txt";
             Metody.zapisz2(macierzKoncowa, nazwa);
@@ -428,13 +417,17 @@ namespace SudokuZaleznosci
             nazwa = "Wynik3.txt";
             Metody.zapisz2(macierzKoncowaProcentowa, nazwa);
 
-            List<int[,]> wykryteZaleznosci = znajdzZaleznosci(macierzKoncowaProcentowa);
+
+            int prog = 25;
+            List<int[,]> wykryteZaleznosci = znajdzZaleznosci(macierzKoncowaProcentowa,prog);
             Metody.zapiszZaleznosci(wykryteZaleznosci, "pary.txt", macierzKoncowaProcentowa,macierzKoncowa);
 
             Cube kostkaKoncowa = KostkaZaleznosci(wynik);
             Cube kostkaKoncowaProcentowa = obliczProcentKostka(kostkaKoncowa);
 
-            List<int[,]> wykryteZaleznosciKostka = znajdzZaleznosciKostka(kostkaKoncowaProcentowa);
+
+            prog = 33;
+            List<int[,]> wykryteZaleznosciKostka = znajdzZaleznosciKostka(kostkaKoncowaProcentowa, prog);
             Metody.zapiszZaleznosciKostka(wykryteZaleznosciKostka, "kostka.txt", kostkaKoncowaProcentowa, kostkaKoncowa);
 
             Console.ReadKey();
